@@ -2,6 +2,8 @@
 
 Welcome to **NewsLetter**, an AI-driven project that automates the creation of insightful and well-designed newsletters using autonomous agents. With just a topic as input, the system handles everything—from research to content editing to newsletter formatting—all without human intervention.
 
+HuggingFace Space Link: https://huggingface.co/spaces/aakashaldankar/NewsLetter
+
 ---
 
 ## 🚀 What is NewsLetter?
