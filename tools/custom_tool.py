@@ -3,7 +3,6 @@ from exa_py import Exa
 import os
 from datetime import datetime, timedelta
 
-#exa api:8a77426a-8078-4b9b-be4a-d069c749f317
 class SearchAndContents(BaseTool):
     name: str = "Search and Contents Tool"
     description: str = (
@@ -12,9 +11,7 @@ class SearchAndContents(BaseTool):
 
     def _run(self, search_query: str) -> str:
 
-        #exa = Exa(api_key=os.getenv("EXA_API_KEY"))
-        exa = Exa(api_key="8a77426a-8078-4b9b-be4a-d069c749f317")
-
+        exa = Exa(api_key=os.getenv("EXA_API_KEY"))
         one_week_ago = datetime.now() - timedelta(days=7)
         date_cutoff = one_week_ago.strftime("%Y-%m-%d")
 
@@ -39,8 +36,7 @@ class FindSimilar(BaseTool):
         one_week_ago = datetime.now() - timedelta(days=7)
         date_cutoff = one_week_ago.strftime("%Y-%m-%d")
 
-        #exa = Exa(api_key=os.getenv("EXA_API_KEY"))
-        exa = Exa(api_key="8a77426a-8078-4b9b-be4a-d069c749f317")
+        exa = Exa(api_key=os.getenv("EXA_API_KEY"))
     
         search_results = exa.find_similar(
             url=article_url, num_results=1, start_published_date=date_cutoff
@@ -53,9 +49,7 @@ class GetContents(BaseTool):
     description: str = "Gets the contents of a specific article using the Exa API. Takes in the ID of the article in a list, like this: ['https://www.cnbc.com/2024/04/18/my-news-story']."
     
     def _run(self, article_ids: str) -> str:
-
-        #exa = Exa(api_key=os.getenv("EXA_API_KEY"))
-        exa = Exa(api_key="8a77426a-8078-4b9b-be4a-d069c749f317")
+        exa = Exa(api_key=os.getenv("EXA_API_KEY"))
 
         contents = exa.get_contents(article_ids[:1])
         return contents
