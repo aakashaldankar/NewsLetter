@@ -7,7 +7,6 @@ from langchain_core.agents import AgentFinish
 import json
 import os
 import time
-#os.environ['GROQ_API_KEY'] = os.getenv('GROQ_API')
 
 @CrewBase
 class NewsletterGenCrew:
@@ -18,7 +17,6 @@ class NewsletterGenCrew:
 
     def llm(self):
         llm = ChatGroq(api_key=os.getenv("GROQ_API_KEY"), model="groq/llama-3.3-70b-versatile")
-        #llm = LLM(api_key=os.getenv('GROQ_API_KEY'), model='groq/meta-llama/llama-4-scout-17b-16e-instruct')
         return llm
 
     @agent
@@ -29,7 +27,6 @@ class NewsletterGenCrew:
             verbose=False,
             allow_delegation=False,
             llm=self.llm()
-            #step_callback=lambda step: self.step_callback(step, "Research Agent")
         )
 
     @agent
@@ -39,7 +36,6 @@ class NewsletterGenCrew:
             verbose=False,
             allow_delegation=False,
             llm=self.llm()
-            #step_callback=lambda step: self.step_callback(step, "Chief Editor")
         )
 
     @agent
@@ -49,7 +45,6 @@ class NewsletterGenCrew:
             verbose=False,
             allow_delegation=False,
             llm=self.llm()
-            #step_callback=lambda step: self.step_callback(step, "HTML Writer")
         )
 
     @task
@@ -68,11 +63,9 @@ class NewsletterGenCrew:
 
     @task
     def newsletter_task(self) -> Task:
-    # Define the task
         return Task(
             config=self.tasks_config["newsletter_task"],
             agent=self.designer(),
-            #output_file=output_file
         )
            
     @crew
@@ -83,5 +76,4 @@ class NewsletterGenCrew:
             tasks=self.tasks,  # Automatically created by the @task decorator
             process=Process.sequential,
             verbose=False
-            # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
         )
