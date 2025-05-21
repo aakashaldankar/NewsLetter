@@ -1,0 +1,110 @@
+research_task:
+  description: >
+    Conduct a thorough research about the latest news on {topic}. Be sure to look for sources that are reliable and publish recent news. Do not include articles that are not news material or that are not directly related to {topic}.
+    With this research, compile a list of the most relevant news stories that you found. 
+
+    Follow these rules:
+    - Only include articles that are especially relevant to {topic}. Do not include any news that are not directly related to {topic}. 
+    - Do not include sources that are not a news article. If the content of the page includes a list of articles or looks like the front page of a website, do not include it in the list!
+    - Summarize the news in a few sentences. Make the summary as long as necessary to include all the relevant information, but not too long for a newsletter.
+    - Include the URL of the article where you found the news.
+    - Include a minimum of 2 news articles and a maximum of 3 news articles in the list.
+    - When using the Search Tool, your search query should be concise (for example, "latest news on {topic}").
+
+    IMPORTANT INSTRUCTIONS ABOUT USING TOOLS: When using tools, DO NOT ESCAPE the underscore character "_", EVER. If you need to use a tool and pass in a parameter called 'search_query', you should write 'search_query', not 'search\_query'. THIS IS VERY IMPORTANT, else the tool will not work.
+
+  expected_output: >
+    A markdown document with the most relevant news stories. Each news story should contain the following:
+    - Title of the news
+    - Summary of the news
+    - URL of the article where the news was found
+
+    Here is an example of the format of a news article that you could include in the document:
+    
+    <EXAMPLE>
+      Story 1:
+      - Title: **Daily briefing: AI now beats humans at basic reading and maths**
+      - **Summary:** AI systems can now nearly match and sometimes exceed human performance in basic tasks. The report discusses the need for new benchmarks to assess AI capabilities and highlights the ethical considerations for AI models.
+      - **URL:** [Nature Article](https://www.nature.com/articles/d41586-024-01125-1)
+    </EXAMPLE>
+
+edit_task:
+  description: >
+    Given the list of news articles that will be used in the newsletter do the following things:
+    
+    - Rewrite the title of each news article to make it more engaging and interesting for the readers of the newsletter.
+    - Write an extra paragraph that explains why the article is important.(don't just rewrite it)
+
+    IMPORTANT INSTRUCTION: You shall not use any tools just do the assigned task exceptionally.
+
+  expected_output: >
+    A markdown document with all the news to be included in the newsletter of the week. The document should have a title related to the curated stories of the week and a list of news articles.
+    
+    Each one should contain:
+    - Title:
+    - Summary: 
+    - Why this is important:
+    - Source: [URL of the article]
+
+    Here is an example of a document that you are expected to produce:
+    <EXAMPLE>
+    Title of the day: AI is taking over the world
+
+      - **Title:** AI Surpasses Human Capabilities in Basic Reading and Maths
+        **Summary:** Recent advancements in AI technology have enabled systems to match and sometimes exceed human performance in fundamental tasks such as reading and arithmetic. This shift necessitates the creation of new benchmarks to appropriately evaluate AI capabilities.
+        **Why this is important:** This development is crucial as it not only showcases the rapid progress in AI but also prompts a reevaluation of how AI is integrated into educational and professional settings. It raises significant ethical questions about the future role of AI in society.
+        **Source:** "Title of the article" by ["Source"](https://www.nature.com/articles/d41586-024-01125-1)
+
+        [... more news articles ...]
+
+    </EXAMPLE>
+
+newsletter_task:
+  description: >
+    Fill the following HTML template with exactly the same information that is given to you. Also, include the following personal message at the beginning of the newsletter in the space provided: {personal_message}
+
+    (If there is no personal message, leave the space empty.)
+
+    IMPORTANT INSTRUCTION:
+    Create only that many articles which are provided to you. Do not replicate or add any content to the articles provided. Do not hallucinate content. Do not invent facts.
+    
+    For each article:
+    - Preserve the exact title, summary, and structure.
+    - Provide the correct and complete URL corresponding to each article. Never generate or invent a link. If no link is provided, leave the "Read more" section out for that article.
+    - DO NOT rewrite, rephrase, or summarize any of the content. Just place the provided content correctly into the template.
+
+    IMPORTANT STYLE INSTRUCTIONS:
+    - Use only inline CSS styles. Do not use external stylesheets or `<link>` tags.
+    - Ensure that the personal message, headings, and all text are clearly visible:
+      - Title and headings must use color: #222 or darker.
+      - Paragraphs must use color: #444 or darker and line-height: 1.6.
+      - Avoid using transparent or very light grey colors (e.g., #aaa or #ccc).
+    - Use `<h1 style="color:#222;">`, `<h2 style="color:#222;">`, and `<p style="color:#444; line-height:1.6;">` formats for maximum readability.
+    - The newsletter background should be light (#ffffff or #f9f9f9), and the text should contrast well.
+    - The personal message must appear at the top in a `<p>` tag and should follow the same dark styling.
+
+    ✅ Example:
+    <h2 style="color:#222;">Article Title</h2>
+    <p style="color:#444; line-height:1.6;">This is the summary...</p>
+
+    ✅ Example Read More:
+    <a href="https://example.com/article-link" style="color: #0066cc;">Read full article</a>
+
+    {html_template}
+
+  expected_output: >
+    Return ONLY the HTML content filled with the given information.
+    - DO NOT include triple backticks like ``` or ```html or any code fences.
+    - DO NOT include any explanations or extra messages.
+    - DO NOT change or skip any article or URL.
+    - Output must be valid HTML and renderable directly.
+
+
+    
+    
+    
+    
+    
+    
+    
+    
